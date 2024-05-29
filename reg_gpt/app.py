@@ -26,7 +26,16 @@ st.title("ChatGPT Streamlit App")
 # Dropdown to select the model type
 model_options = ["gpt-3.5-turbo", "gpt-4o", "gpt--4-turbo"]
 selected_model = st.selectbox("Select model", model_options)
-
+# Enter passphrase to access the app
+attempts = 0
+password = st.text_input("Enter password:", type="password")
+if (password != "studyhall1026") and (attempts < 3):
+    st.write("Incorrect password. Please try again.")
+    attempts += 1
+    st.stop()
+if attempts == 3:
+    st.write("Too many attempts. Please try again later.")
+    st.stop()
 # Text input for user query
 user_input = st.text_input("Enter your message:", "")
 
